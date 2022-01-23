@@ -30,5 +30,5 @@ if (!isset($_POST['regbtn'])) {
 		if ($result) {
 			echo '<h3 style="color:green;">New User Added!</h3>';
 		}
-	}
+	}333333333333333333
 }
