@@ -15,8 +15,8 @@
 		
 		<div class="row">
 			<nav class="col-sm-12 col-md-12 col-lg-12">
-				<?php require_once('pages/menu.php'); ?>
-				<?php require_once('pages/functions.php'); ?>				
+				<? require_once('pages/menu.php'); ?>
+				<? require_once('pages/functions.php'); ?>
 			</nav>
 		</div>
 		
