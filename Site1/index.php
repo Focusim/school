@@ -23,8 +23,8 @@
 		
 		<div class="row">
 			<section class="col-sm-12 col-md-12 col-lg-12">
-				<?
-				$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+				<? // $_GET — Переменные HTTP GET (url)
+				$page = (isset($_GET['page'])) ? $_GET['page'] : 1; // isset — Определяет, была ли установлена переменная значением, отличным от null
 				switch ($page) {
 					case 1:
 						require_once('pages/home.php');
@@ -38,6 +38,9 @@
 					case 4:
 						require_once('pages/registration.php');
 						break;
+                    case 5:
+                        require_once('pages/my.php');
+                        break;
 					default:
 						echo "<h1>404 page not found</h1>";
 				}

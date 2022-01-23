@@ -6,7 +6,7 @@ function register($name, $pass, $email) {
 	$email = trim(htmlspecialchars($email));
 	
 	if ($name == "" || $pass == "" || $email == "") {
-		echo '<h3 style="color:red;">Fill All Required Fields!</h3>';
+		echo '<h3 style="color:red;">Заполните все обязательные поля!</h3>';
 		return false;
 	}
 	
@@ -16,17 +16,21 @@ function register($name, $pass, $email) {
 	}
 
 	$users = 'pages/users.txt';
-	$file = fopen($users, 'a+');
-	while ($line = fgets($file, 128)) {
-		$readName = substr($line, 0, strpos($line, ":"));
+
+	$file = fopen($users, 'a+'); //'a' Открывает файл только для записи; помещает указатель в конец файла. Если файл не существует - пытается его создать. В данном режиме функция fseek() не применима, записи всегда добавляются в конец.
+	while ($line = fgets($file, 128)) { // fgets — Читает строку из файла
+
+		$readName = substr($line, 0, strpos($line, ":")); // substr — Возвращает подстроку / strpos — Возвращает позицию первого вхождения подстроки
+
 		if ($readName == $name) {
+
 			echo '<h3 style="color:red;">Such Login Name Is Already Used!</h3>';
 			return false;
 		}
 	}
 	
-	$newUserLine = $name.':'.md5($pass).':'.$email.PHP_EOL;
-	fputs($file, $newUserLine);
+	$newUserLine = $name.':'.md5($pass).':'.$email.PHP_EOL; // PHP_EOL - новая строка
+	fputs($file, $newUserLine); // fwrite() записывает содержимое data в файловый поток stream.
 	fclose($file);
 	return true;
 }
